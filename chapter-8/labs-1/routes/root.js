@@ -7,6 +7,12 @@ module.exports = async function (fastify, opts) {
     if (!url) {
       throw fastify.httpErrors.badRequest()
     }
+
+    try {
+      new URL(url)
+    } catch (err) {
+      throw err
+    }
     
     reply.from(url)
   })
